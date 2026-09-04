@@ -100,4 +100,7 @@ test("configures BYOK and triages the inbox in batches", async ({ page }) => {
   page.once("dialog", (dialog) => dialog.accept());
   await page.getByRole("button", { name: "批量接受" }).click();
   await expect(page.getByText("已接受 1 条来源。", { exact: true })).toBeVisible();
+
+  await page.getByRole("button", { name: "清除 Key" }).click();
+  await expect(page.getByLabel("API Key")).toHaveValue("");
 });

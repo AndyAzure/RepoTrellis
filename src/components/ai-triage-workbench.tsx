@@ -11,6 +11,7 @@ import {
   LockKeyhole,
   Save,
   Sparkles,
+  Trash2,
   WandSparkles,
 } from "lucide-react";
 import { useEffect, useMemo, useState, type FormEvent } from "react";
@@ -128,6 +129,27 @@ export function AiTriageWorkbench() {
     } catch {
       setConfigSaved(false);
       setNotice({ kind: "error", message: "浏览器无法保存配置，请检查存储权限。" });
+    }
+  }
+
+  function handleClearApiKey() {
+    setApiKey("");
+    try {
+      const raw = window.localStorage.getItem(configStorageKey);
+      const saved = raw ? (JSON.parse(raw) as Partial<AiConfig>) : {};
+      window.localStorage.setItem(
+        configStorageKey,
+        JSON.stringify({
+          endpoint: typeof saved.endpoint === "string" ? saved.endpoint : endpoint.trim(),
+          model: typeof saved.model === "string" ? saved.model : model.trim(),
+          apiKey: "",
+        }),
+      );
+      setConfigSaved(true);
+      setNotice({ kind: "success", message: "已清除当前浏览器保存的 API Key。" });
+    } catch {
+      setConfigSaved(false);
+      setNotice({ kind: "error", message: "清除 Key 失败，请检查浏览器存储权限。" });
     }
   }
 
@@ -286,14 +308,27 @@ export function AiTriageWorkbench() {
               <span className="text-[11px] text-[var(--muted)]" role="status">
                 {configSaved ? "已保存到当前浏览器" : "修改后记得保存配置"}
               </span>
-              <button
-                type="submit"
-                disabled={!configReady}
-                className="inline-flex items-center gap-2 rounded-lg bg-[var(--accent)] px-3.5 py-2 text-xs font-semibold text-white hover:bg-[var(--accent-strong)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2 focus:ring-offset-[var(--surface)] disabled:cursor-not-allowed disabled:opacity-60"
-              >
-                <Save className="size-3.5" aria-hidden="true" />
-                保存配置
-              </button>
+              <div className="flex flex-wrap items-center gap-2">
+                {apiKey && (
+                  <button
+                    type="button"
+                    onClick={handleClearApiKey}
+                    disabled={!configReady}
+                    className="inline-flex items-center gap-1.5 rounded-lg border border-[var(--border-strong)] px-3 py-2 text-xs font-semibold text-[var(--muted)] hover:border-red-300 hover:text-red-600 focus:outline-none focus:ring-2 focus:ring-red-500/30 disabled:cursor-not-allowed disabled:opacity-60"
+                  >
+                    <Trash2 className="size-3.5" aria-hidden="true" />
+                    清除 Key
+                  </button>
+                )}
+                <button
+                  type="submit"
+                  disabled={!configReady}
+                  className="inline-flex items-center gap-2 rounded-lg bg-[var(--accent)] px-3.5 py-2 text-xs font-semibold text-white hover:bg-[var(--accent-strong)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2 focus:ring-offset-[var(--surface)] disabled:cursor-not-allowed disabled:opacity-60"
+                >
+                  <Save className="size-3.5" aria-hidden="true" />
+                  保存配置
+                </button>
+              </div>
             </div>
           </form>
         </section>

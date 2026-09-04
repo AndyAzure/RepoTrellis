@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f4f6f8;
+  --surface: #ffffff;
+  --surface-muted: #edf1f5;
+  --ink: #15202b;
+  --muted: #647383;
+  --border: #dce3e9;
+  --border-strong: #c5d0da;
+  --accent: #2f64d6;
+  --accent-strong: #214aab;
+  --accent-soft: #e8efff;
+  --accent-border: #c5d6ff;
+  --success: #27815a;
+  --success-soft: #e4f4eb;
+  --violet: #6953a8;
+  --violet-soft: #eeeafd;
+  --shadow-sm: 0 1px 2px rgb(20 37 52 / 0.04), 0 8px 24px rgb(20 37 52 / 0.04);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--ink);
+  --font-sans: Arial, Helvetica, sans-serif;
+  --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+}
+
+body {
+  background: var(--background);
+  color: var(--ink);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+:where(button, a, input, select, textarea):focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #12171d;
+    --surface: #1a222b;
+    --surface-muted: #222d37;
+    --ink: #edf2f6;
+    --muted: #9eacb8;
+    --border: #2c3945;
+    --border-strong: #40505f;
+    --accent: #6e98f4;
+    --accent-strong: #9bb8ff;
+    --accent-soft: #1b315d;
+    --accent-border: #2f4e87;
+    --success: #65c394;
+    --success-soft: #1d3d2d;
+    --violet: #b7a6ed;
+    --violet-soft: #30294a;
+    --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.18), 0 8px 24px rgb(0 0 0 / 0.12);
+  }
+}

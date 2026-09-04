@@ -1,0 +1,55 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1788443921577,
+      "tag": "0000_graceful_sumo",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1788444367554,
+      "tag": "0001_dizzy_mach_iv",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1788450757774,
+      "tag": "0002_repositories_fts",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "6",
+      "when": 1788453247908,
+      "tag": "0003_futuristic_korath",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "6",
+      "when": 1788459798058,
+      "tag": "0004_accept_github_sources",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "6",
+      "when": 1788487023544,
+      "tag": "0005_chemical_kabuki",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "6",
+      "when": 1788491088477,
+      "tag": "0006_handy_fallen_one",
+      "breakpoints": true
+    }
+  ]
+}

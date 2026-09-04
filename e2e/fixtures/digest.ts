@@ -1,0 +1,45 @@
+import type { DigestSnapshot } from "../../src/domain/digest/digest";
+
+export function digestFixture(): DigestSnapshot {
+  return {
+    id: 7,
+    periodStart: "2026-08-29",
+    periodEnd: "2026-09-04",
+    status: "draft",
+    configSnapshot: {},
+    createdAt: "2026-09-04T10:00:00Z",
+    updatedAt: "2026-09-04T10:00:00Z",
+    items: [1, 2].map((id) => ({
+      id,
+      repositoryId: id,
+      score: id === 1 ? 82 : 41,
+      position: id,
+      decision: id === 1 ? "kept" : "dismissed",
+      reasons: ["匹配本地工具兴趣", "来源已人工确认"],
+      repository: {
+        id,
+        githubId: id,
+        fullName: `example/project${id}`,
+        owner: "example",
+        name: `project${id}`,
+        url: `https://github.com/example/project${id}`,
+        description: "用于本地资料整理的示例项目",
+        defaultBranch: "main",
+        language: "TypeScript",
+        stars: 0,
+        forks: 0,
+        license: "MIT",
+        isArchived: false,
+        remoteUpdatedAt: null,
+        createdAt: "2026-09-04T10:00:00Z",
+        updatedAt: "2026-09-04T10:00:00Z",
+        status: "candidate",
+        tags: ["本地工具"],
+        note: "DO_NOT_EXPORT_PRIVATE_NOTE",
+        priority: 0,
+        nextAction: "验证最小使用场景",
+        sources: ["manual"],
+      },
+    })),
+  };
+}

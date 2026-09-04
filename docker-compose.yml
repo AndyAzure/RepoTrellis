@@ -1,0 +1,16 @@
+services:
+  repotrellis:
+    build:
+      context: .
+    environment:
+      DATABASE_URL: /app/data/repotrellis.db
+      NODE_ENV: production
+      NEXT_TELEMETRY_DISABLED: "1"
+    ports:
+      - "127.0.0.1:3000:3000"
+    volumes:
+      - repotrellis-data:/app/data
+    restart: unless-stopped
+
+volumes:
+  repotrellis-data:
